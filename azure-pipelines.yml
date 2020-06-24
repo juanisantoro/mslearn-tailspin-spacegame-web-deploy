@@ -5,8 +5,8 @@ variables:
   buildConfiguration: 'Release'
   releaseBranchName: 'release'
 
-  schedules:
- cron: '0 3 * * *'
+schedules:
+- cron: '0 3 * * *'
   displayName: Deploy every day at 3 A.M.
   branches:
     include:
@@ -104,7 +104,7 @@ stages:
               # appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
-              - stage: 'Test'
+- stage: 'Test'
   displayName: 'Deploy to the test environment'
   dependsOn: Dev
   #condition: eq(variables['Build.Reason'], 'Schedule')
@@ -126,4 +126,4 @@ stages:
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               appName: '$(WebAppNameTest)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'              
